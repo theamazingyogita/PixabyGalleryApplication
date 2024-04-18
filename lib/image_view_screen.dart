@@ -19,7 +19,14 @@ class ImageViewScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Image.network(imageUrl),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Image.network(
+            imageUrl,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+        ),
       ),
     );
   }
