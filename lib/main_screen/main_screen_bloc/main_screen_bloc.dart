@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:pixaby_image_app/api_key.dart';
 import '../../image_model.dart';
 
 part 'main_screen_event.dart';
@@ -23,7 +24,7 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
   void _mapGetImagesEventToState(
       GetImagesEvent event, Emitter<MainScreenState> emit) async {
     http.Response response = await http.get(Uri.parse(
-        'https://pixabay.com/api/?key=27162510-5b09007af571a2749f6b55489&q=yellow+flowers&image_type=photo&pretty=true'));
+        'https://pixabay.com/api/?key=$pixabyApiKey&q=yellow+flowers&image_type=photo&pretty=true'));
     if (response.statusCode == 200) {
       print("got response.body::${response.body}");
       ImageModel imageModel = ImageModel.fromJson(jsonDecode(response.body));
